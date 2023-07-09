@@ -1,34 +1,68 @@
----
----
+const categories = {
+  fiction: [
+    {
+      url: `/jekyll-theme-serial-programmer/posts/the-purpose-of-education/`,
+      date: `12 Dec 1948`,
+      title: `The Purpose of Education`,
+    },
+  ],
+  jekyll: [
+    {
+      url: `/jekyll-theme-serial-programmer/posts/jekyll-markdown/`,
+      date: `04 Nov 2021`,
+      title: `Jekyll Markdown`,
+    },
+    {
+      url: `/jekyll-theme-serial-programmer/posts/the-purpose-of-education/`,
+      date: `12 Dec 1948`,
+      title: `The Purpose of Education`,
+    },
+  ],
+  Test_Post: [
+    {
+      url: `/jekyll-theme-serial-programmer/posts/jekyll-markdown/`,
+      date: `04 Nov 2021`,
+      title: `Jekyll Markdown`,
+    },
+  ],
+  first_post: [
+    {
+      url: `/jekyll-theme-serial-programmer/posts/jekyll-markdown/`,
+      date: `04 Nov 2021`,
+      title: `Jekyll Markdown`,
+    },
+  ],
+};
 
-const categories = { {% for category in site.categories %}{% capture category_name %}{{ category | first }}{% endcapture %}{{ category_name | replace: " ", "_" }}: [{% for post in site.categories[category_name] %}{ url: `{{ site.baseurl }}{{ post.url }}`, date: `{{post.date | date_to_string}}`, title: `{{post.title}}`},{% endfor %}],{% endfor %} }
-
-console.log(categories)
+console.log(categories);
 
 window.onload = function () {
   document.querySelectorAll(".category").forEach((category) => {
     category.addEventListener("click", function (e) {
-      const posts = categories[e.target.innerText.replace(" ","_")];
-      let html = ``
-      posts.forEach(post=>{
+      const posts = categories[e.target.innerText.replace(" ", "_")];
+      let html = ``;
+      posts.forEach((post) => {
         html += `
         <a class="modal-article" href="${post.url}">
           <h4>${post.title}</h4>
           <small class="modal-article-date">${post.date}</small>
         </a>
-        `
-      })
-      document.querySelector("#category-modal-title").innerText = e.target.innerText;
+        `;
+      });
+      document.querySelector("#category-modal-title").innerText =
+        e.target.innerText;
       document.querySelector("#category-modal-content").innerHTML = html;
       document.querySelector("#category-modal-bg").classList.toggle("open");
       document.querySelector("#category-modal").classList.toggle("open");
     });
   });
 
-  document.querySelector("#category-modal-bg").addEventListener("click", function(){
-    document.querySelector("#category-modal-title").innerText = "";
-    document.querySelector("#category-modal-content").innerHTML = "";
-    document.querySelector("#category-modal-bg").classList.toggle("open");
-    document.querySelector("#category-modal").classList.toggle("open");
-  })
+  document
+    .querySelector("#category-modal-bg")
+    .addEventListener("click", function () {
+      document.querySelector("#category-modal-title").innerText = "";
+      document.querySelector("#category-modal-content").innerHTML = "";
+      document.querySelector("#category-modal-bg").classList.toggle("open");
+      document.querySelector("#category-modal").classList.toggle("open");
+    });
 };
