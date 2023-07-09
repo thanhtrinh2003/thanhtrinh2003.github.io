@@ -1,10 +1,10 @@
-title: Jekyll Serial Programmer
-markdown: kramdown
+title: Thanh Trinh
+markdown: ekkila
 
 # for atom feed
 author:
-  name: Sharad Raj Singh Maurya
-  email: dev_sharad@outlook.com
+  name: Thanh Trinh
+  email: thanhtrinh280506@gmail.com
 
 plugins:
   - jemoji
